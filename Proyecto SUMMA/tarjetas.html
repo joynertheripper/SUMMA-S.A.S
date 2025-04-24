@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Tarjeta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            margin: auto;
+        }
+
+        .btn {
+            background-color: #27ae60; /* Verde */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #2ecc71;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="confirmacion.html">Volver</a>
+    </div>
+
+    <div class="container">
+        <h1>Pago con Tarjeta</h1>
+        <form id="payment-form">
+            <label for="tipoTarjeta">Tipo de Tarjeta:</label>
+            <select id="tipoTarjeta" required>
+                <option value="">Seleccione una opción</option>
+                <option value="credito">Crédito</option>
+                <option value="debito">Débito</option>
+                <option value="mastercard">Mastercard</option>
+            </select>
+            
+            <label for="numeroTarjeta">Número de Tarjeta:</label>
+            <input type="text" id="numeroTarjeta" maxlength="16" placeholder="Ingrese su número de tarjeta" required>
+            
+            <label for="nombreTitular">Nombre del Titular:</label>
+            <input type="text" id="nombreTitular" placeholder="Nombre como aparece en la tarjeta" required>
+            
+            <label for="fechaExpedicion">Fecha de Expedición:</label>
+            <input type="date" id="fechaExpedicion" required>
+            
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv" maxlength="3" placeholder="3 dígitos" required>
+            
+            <label for="monto">Monto a pagar:</label>
+            <input type="text" id="monto" required>
+            
+            <button type="submit" class="btn">Pagar</button>
+        </form>
+    </div>
+</body>
+</html>

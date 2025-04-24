@@ -1,0 +1,196 @@
+/* Paleta de colores basada en SUMMA */
+:root {
+    --color-primario: #1a3d6e; /* Azul oscuro personalizado */
+    --color-secundario: #4F81BD; /* Azul medio */
+    --color-acento: #C0504D; /* Rojo ladrillo */
+    --color-fondo: #ffffff; /* Blanco */
+    --color-texto: #000000; /* Negro */
+    --color-carrusel: #031635; /* Azul oscuro para el carrusel */
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--color-fondo) !important;
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: var(--color-fondo);
+    text-decoration: none;
+    font-weight: bold;
+}
+.nav-buttons a {
+    background-color: #27ae60; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Relleno del botón */
+    text-decoration: none; /* Elimina el subrayado */
+    font-size: 1.2em; /* Tamaño de la fuente */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-left: 10px; /* Espacio entre botones */
+}
+
+.nav-buttons a:hover {
+    background-color: #2ecc71; /* Color de fondo cuando el mouse pasa por encima */
+}
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Sección del carrusel */
+#inicio {
+    background-color: var(--color-carrusel);
+    color: var(--color-fondo);
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+#inicio h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#inicio p {
+    font-size: 18px;
+}
+
+/* Carrusel */
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
+/* Sección de productos */
+#productos {
+    background-color: var(--color-fondo) !important; /* Eliminar fondo gris */
+    padding: 40px 20px;
+}
+
+#productos h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-primario);
+}
+
+/* Cartas de productos */
+.card {
+    border: 3px solid var(--color-primario); /* Contorno grueso */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-fondo);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+
+.card img {
+    border-bottom: 4px solid var(--color-secundario);
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+    height: 200px; /* Tamaño uniforme para todas las imágenes */
+    object-fit: cover; /* Recorta la imagen sin deformarla */
+}
+
+.card-body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--color-primario);
+}
+
+.card-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card .fw-bold {
+    font-size: 18px;
+    color: var(--color-acento);
+}
+/* Centrar la sección */
+#contacto {
+    
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 450px; /* Ajusta la altura para centrar mejor */
+}
+
+/* Centrar el contenedor */
+#contacto .contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Alinear los elementos de contacto */
+.info-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Ajustar las cajas de información */
+.info-contacto .item {
+    width: 80px; /* Ajusta el tamaño para que no ocupen todo el ancho */
+    width: 300px;
+    text-align: center;
+}
+
+
+/* Pie de página */
+footer {
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+} 

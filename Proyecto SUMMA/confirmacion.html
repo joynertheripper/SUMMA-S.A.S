@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pago</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .metodo-pago {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .tarjeta {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .tarjeta:hover {
+            transform: scale(1.05);
+        }
+        .tarjeta img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .tarjeta label {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #2ecc71;
+        }
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confirmación de Pago</h1>
+    <form id="pagoForm">
+        <div class="metodo-pago">
+            <div class="tarjeta">
+                <img src="imagenes/nequi.jpg" alt="Logo Nequi">
+                <label>
+                    <input type="radio" name="metodo_pago" value="nequi.html" required>
+                    Nequi
+                </label>
+            </div>
+            <div class="tarjeta">
+                <img src="imagenes/tarjetas.png" alt="Logo Tarjeta">
+                <label>
+                    <input type="radio" name="metodo_pago" value="tarjetas.html" required>
+                    Pago con Tarjeta
+                </label>
+            </div>
+            <div class="tarjeta">
+                <img src="imagenes/pse.jpg" alt="Logo PSE">
+                <label>
+                    <input type="radio" name="metodo_pago" value="pse.html" required>
+                    PSE
+                </label>
+            </div>
+            <div class="tarjeta">
+                <img src="imagenes/daviplata.png" alt="Logo Daviplata">
+                <label>
+                    <input type="radio" name="metodo_pago" value="daviplata.html" required>
+                    Daviplata
+                </label>
+            </div>
+        </div>
+        <div class="btn-container">
+            <button type="button" class="btn" onclick="redirigirPago()">Confirmar Pago</button>
+            <button class="btn">
+                <a href="catalogo.html">Seguir mirando</a>
+            </button>
+            <button class="btn">
+                <a href="pagina_principal.html">cancelar compra</a>
+            </button>
+        </div>
+    </form>
+    <script>
+        function redirigirPago() {
+            const metodoSeleccionado = document.querySelector('input[name="metodo_pago"]:checked');
+            if (metodoSeleccionado) {
+                window.location.href = metodoSeleccionado.value;
+            } else {
+                alert("Por favor, selecciona un método de pago.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con Daviplata</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+            text-align: left;
+            position: relative;
+        }
+        .volver-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .volver-btn:hover {
+            background-color: #5a6268;
+        }
+        h1 {
+            color: #c8102e; /* Rojo Daviplata */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .btn {
+            display: block;
+            background-color: #c8102e; /* Rojo Daviplata */
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background-color: #a00d26; /* Rojo más oscuro */
+        }
+
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="confirmacion.html">Volver</a>
+    </div>
+
+    <div class="container">
+        
+        <h1>Pago con Daviplata</h1>
+        <form id="payment-form">
+            <label for="numeroCelular">Número de Celular:</label>
+            <input type="text" id="numeroCelular" maxlength="10" placeholder="Ingrese su número Daviplata" required>
+            
+            <label for="documento">Número de Documento:</label>
+            <input type="text" id="documento" placeholder="Cédula de ciudadanía o extranjería" required>
+            
+            <label for="monto">Monto a pagar:</label>
+            <input type="text" id="monto" required>
+            
+            <button type="submit" class="btn">Pagar</button>
+        </form>
+    </div>
+</body>
+</html>

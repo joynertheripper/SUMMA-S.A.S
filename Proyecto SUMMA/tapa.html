@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tapas de Alcantarilla</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #003366;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 3em;
+        }
+
+        header p {
+            font-size: 1.5em;
+            font-weight: bold;
+            font-family: 'Verdana', sans-serif;
+            color: white;
+        }
+
+        header .nav-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        header .nav-buttons a {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        header .nav-buttons a:hover {
+            background-color: #2ecc71;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 50%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #003366;
+            border-radius: 8px;
+        }
+
+        h2, p {
+            color: #333;
+        }
+
+        .pricing {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .btn {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #2ecc71;
+        }
+
+        .quantity-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .quantity-section label {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .quantity-section select {
+            font-size: 1.2em;
+            padding: 5px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        ul li {
+            font-size: 1.1em;
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tapas de Alcantarilla</h1>
+        <p>Fabricadas en hierro dúctil, resistentes a cargas pesadas y diseñadas para soportar tráfico vehicular e industrial</p> 
+
+        <div class="nav-buttons">
+            <a href="pagina_principal.html">Inicio</a>
+            <a href="catalogo.html">Ver más productos</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <img src="imagenes/tapa de alcantarilla.webp" alt="Tapas de Alcantarilla" class="product-image">
+        
+        <h2>Descripción del Producto</h2>
+        <p>Las Tapas de Alcantarilla están fabricadas en hierro dúctil, un material de alta resistencia que les otorga una gran durabilidad ante las cargas pesadas. Son ideales para su uso en entornos urbanos, calles y carreteras con tráfico vehicular e industrial. Con un diseño robusto y funcional, estas tapas están fabricadas para cumplir con las normativas más estrictas, ofreciendo una capacidad de carga de hasta 40 toneladas, lo que las hace aptas para soportar el paso de vehículos pesados, incluyendo camiones y maquinaria industrial.</p>
+
+        <p>El hierro dúctil es un material conocido por su excelente resistencia a la corrosión, lo que garantiza que las tapas mantendrán su integridad estructural a lo largo del tiempo, incluso en condiciones climáticas extremas. Además, su diseño permite un fácil mantenimiento y reemplazo, garantizando que las infraestructuras de alcantarillado puedan mantenerse funcionales sin interrupciones significativas.</p>
+
+        <p>Estas tapas también cumplen con los más altos estándares de seguridad y eficiencia, brindando una protección confiable para las redes de alcantarillado y otros sistemas subterráneos. Son aptas para una instalación rápida y segura, lo que las convierte en una opción preferida para proyectos de infraestructura pública y privada. Su durabilidad y resistencia las hacen ideales para áreas con alto tránsito vehicular, garantizando un uso prolongado sin necesidad de reparaciones frecuentes.</p>
+
+        <h2>Especificaciones Técnicas</h2>
+        <ul>
+            <li><strong>Material:</strong> Hierro dúctil</li>
+            <li><strong>Diámetros disponibles:</strong> 50 cm, 60 cm, 80 cm</li>
+            <li><strong>Capacidad de carga:</strong> Hasta 40 toneladas</li>
+            <li><strong>Uso:</strong>
+                <ul>
+                    <li>Tráfico vehicular</li>
+                    <li>Tráfico industrial</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>Precios</h2>
+        <p class="pricing">$60.000 - $150.000</p>
+
+        <div class="quantity-section">
+            <p><strong>Cantidades disponibles:</strong> 100</p>
+            <label for="quantity">Selecciona cantidad a comprar:</label>
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </div>
+        <style>
+            .btn-agregar {
+                background-color: #27ae60; /* Verde */
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                font-size: 1.2em;
+                border-radius: 5px;
+                display: inline-block;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+        
+            .btn-agregar:hover {
+                background-color: #219150; /* Verde más oscuro */
+            }
+        </style>
+        
+        
+        <button class="btn-agregar" onclick="agregarAlCarrito('tapas de alcantarilla ', 100000)">
+            Agregar al carrito
+        </button>
+        
+        <script>
+            function agregarAlCarrito(nombre, precio) {
+                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                let cantidad = parseInt(document.getElementById("quantity").value);
+        
+                let productoExistente = carrito.find(item => item.nombre === nombre);
+                if (productoExistente) {
+                    productoExistente.cantidad += cantidad;
+                } else {
+                    carrito.push({ nombre, precio, cantidad });
+                }
+        
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                alert("Producto agregado al carrito");
+            }
+        </script>
+        <a href="pagos.html" class="btn">Pagar</a>
+    </div>
+
+</body>
+</html>

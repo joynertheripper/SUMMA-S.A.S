@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pagos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #003366;
+            text-align: center;
+        }
+        th {
+            background-color: #003366;
+            color: white;
+        }
+        .total {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .btn {
+            background-color: #27ae60; /* Verde */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #2ecc71;
+        }
+
+        .quantity-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .quantity-controls button {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 10px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+        }
+        .quantity-controls input {
+            width: 50px;
+            text-align: center;
+            font-size: 1.2em;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-buttons">
+        <a href="pagina_principal.html">Inicio</a>
+        <a href="catalogo.html">Ver más productos</a>
+    </div>
+
+    <h1>Resumen de Compra</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-productos"></tbody>
+    </table>
+
+    <p class="total">Total a Pagar: <span id="total-pagar">$0</span></p>
+
+    <a href="confirmacion.html" class="btn" onclick="guardarMonto()">Proceder al Pago</a>
+
+    <script>
+        function cargarCarrito() {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let tablaProductos = document.getElementById("tabla-productos");
+            let totalPagar = 0;
+            tablaProductos.innerHTML = "";
+
+            carrito.forEach((item, index) => {
+                let total = item.precio * item.cantidad;
+                totalPagar += total;
+
+                let fila = `<tr>
+                    <td>${item.nombre}</td>
+                    <td>
+                        <div class="quantity-controls">
+                            <button onclick="actualizarCantidad(${index}, -1)">-</button>
+                            <input type="number" value="${item.cantidad}" id="cantidad-${index}" min="1" readonly>
+                            <button onclick="actualizarCantidad(${index}, 1)">+</button>
+                        </div>
+                    </td>
+                    <td>$${item.precio.toLocaleString()}</td>
+                    <td>$${total.toLocaleString()}</td>
+                    <td><button onclick="eliminarProducto(${index})">Eliminar</button></td>
+                </tr>`;
+                tablaProductos.innerHTML += fila;
+            });
+
+            document.getElementById("total-pagar").innerText = `$${totalPagar.toLocaleString()}`;
+            localStorage.setItem("montoTotal", totalPagar); // Guardamos el monto total en localStorage
+        }
+
+        function actualizarCantidad(index, cambio) {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let item = carrito[index];
+            item.cantidad += cambio;
+            if (item.cantidad < 1) {
+                item.cantidad = 1;
+            }
+            carrito[index] = item;
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            cargarCarrito();
+        }
+
+        function eliminarProducto(index) {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            carrito.splice(index, 1);
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            cargarCarrito();
+        }
+
+        function guardarMonto() {
+            let total = document.getElementById("total-pagar").innerText.replace("$", "").replace(/,/g, "");
+            localStorage.setItem("montoTotal", total);
+        }
+
+        cargarCarrito();
+    </script>
+
+</body>
+</html>
+

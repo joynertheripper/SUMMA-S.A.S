@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUMMA S.A.S</title>
+    <link rel="stylesheet" href="css/stylos_login_registro.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { 
+            getAuth, 
+            signInWithEmailAndPassword, 
+            GoogleAuthProvider, 
+            signInWithPopup 
+        } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAFm09SWkmWGiaMbseFmeZEG8ZSd5ag8zY",
+            authDomain: "loginapp-60137.firebaseapp.com",
+            projectId: "loginapp-60137",
+            storageBucket: "loginapp-60137.appspot.com",
+            messagingSenderId: "275448553195",
+            appId: "1:275448553195:web:1a5a04be4852bc1f5da8ae",
+            measurementId: "G-B7R6ZQGQDE"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        function mostrarCuadroExito(mensaje) {
+            const cuadroExito = document.getElementById("cuadro-exito");
+            const mensajeExito = document.getElementById("mensaje-exito");
+
+            mensajeExito.innerText = mensaje;
+            cuadroExito.style.display = "block";
+
+            setTimeout(() => {
+                cuadroExito.style.display = "none";
+                window.location.href = "pagina_principal.html"; 
+            }, 1000);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelector('.login-form form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                signInWithEmailAndPassword(auth, email, password)
+                    .then(() => {
+                        mostrarCuadroExito("Inicio de sesión exitoso");
+                    })
+                    .catch((error) => {
+                        alert("Error: " + error.message);
+                    });
+            });
+
+            document.querySelector(".google-login").addEventListener("click", function() {
+                signInWithPopup(auth, provider)
+                    .then(() => {
+                        mostrarCuadroExito("Inicio de sesión exitoso con Google");
+                    })
+                    .catch((error) => {
+                        alert("Error: " + error.message);
+                    });
+            });
+        });
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #cuadro-exito {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .nav-buttons a {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+        .nav-buttons a:hover {
+            background-color: #2ecc71;
+        }
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .login-form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .login-form button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .image-container {
+            margin: 50px auto;
+        }
+        .image-container img {
+            width: 500px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <img src="imagenes/Logo_SUMMA S.A.S.jfif" alt="Logo SUMMA S.A.S" class="logo">
+        </div>
+    </header>
+
+    <div class="nav-buttons">
+        <a href="pagina_principal.html" class="btn">Inicio</a>
+    </div>
+    
+    <main class="main-content">
+        <div class="info">
+            <h1>SUMMA S.A.S</h1>
+            <p class="subtitle">Importadores de Tuberías y Derivados de Acero</p>
+            <p class="description">Cotiza con nosotros conoce todos nuestros productos.</p>
+            <div class="image-container">
+                <img src="imagenes/sesion.jpg" alt="Imagen de inicio de sesión">
+            </div>
+        </div>
+
+        <div class="login-container">
+            <div class="login-form">
+                <h2>Iniciar Sesión</h2>
+                <form action="#" method="post">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                    
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    
+                    <button type="button" class="google-login">Iniciar sesión con Google</button>
+                    <button type="submit" class="submit-button">Inicia sesión en SUMMA S.A.S</button>
+                </form>
+                
+                <button class="forgot-password" onclick="window.location.href='ayuda-y-soporte.html'">¿Olvidaste tu contraseña?</button>
+                <button class="register-link" onclick="window.location.href='registro.html'">Crear cuenta</button>
+                
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 SUMMA. Todos los derechos reservados.</p>
+    </footer>
+
+    <div id="cuadro-exito">
+        <p id="mensaje-exito"></p>
+    </div>
+</body>
+</html>
+

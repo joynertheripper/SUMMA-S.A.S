@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago con PSE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            margin: auto;
+        }
+        h1 {
+            color: #003366;
+            font-size: 2em;
+        }
+        input, select {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #003366;
+            border-radius: 8px;
+            font-size: 1.2em;
+        }
+        .btn {
+            background-color: #27ae60; /* Verde */
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .nav-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-buttons a {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="confirmacion.html">Volver</a>
+    </div>
+    <div class="container">
+        <h1>Pago con PSE</h1>
+        <form id="pse-form">
+            <label for="banco">Selecciona tu banco:</label>
+            <select id="banco" required>
+                <option value="">Seleccione su banco</option>
+                <option value="Bancolombia">Bancolombia</option>
+                <option value="Davivienda">Davivienda</option>
+                <option value="BBVA">BBVA</option>
+                <option value="Banco de Bogotá">Banco de Bogotá</option>
+            </select>
+            
+            <label for="tipo-cuenta">Tipo de cuenta:</label>
+            <select id="tipo-cuenta" required>
+                <option value="ahorros">Cuenta de Ahorros</option>
+                <option value="corriente">Cuenta Corriente</option>
+            </select>
+
+            <label for="identificacion">Número de identificación:</label>
+            <input type="text" id="identificacion" placeholder="Cédula/NIT" required>
+            
+            <label for="monto">Monto a pagar:</label>
+            <input type="text" id="monto" required>
+            <p id="error-monto" class="error" style="color:red;"></p>
+            
+            <button type="submit" class="btn">Pagar</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let montoEsperado = localStorage.getItem("montoTotal");
+            document.getElementById("monto").value = montoEsperado;
+
+            document.getElementById("pse-form").addEventListener("submit", function(event) {
+                event.preventDefault();
+                let montoIngresado = document.getElementById("monto").value;
+                let errorMonto = document.getElementById("error-monto");
+
+                if (montoIngresado !== montoEsperado) {
+                    errorMonto.textContent = "Dinero insuficiente. Debe pagar exactamente " + montoEsperado;
+                } else {
+                    alert("Pago exitoso con PSE por " + montoEsperado);
+                    localStorage.removeItem("montoTotal");
+                    window.location.href = "pagina_principal.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro SUMMA</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #001f4d, #003366);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .register-container {
+      background-color: #fff;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #001f4d;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    input:focus, select:focus {
+      border-color: #001f4d;
+      outline: none;
+    }
+
+    .submit-button, .login-button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button {
+      background-color: #001f4d;
+    }
+
+    .submit-button:hover {
+      background-color: #003366;
+    }
+
+    .login-button {
+      background-color: #27ae60;
+    }
+
+    .login-button:hover {
+      background-color: #2ecc71;
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Estilo para el mensaje de registro existente */
+    #mensajeRegistrado {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    /* Botón de Inicio */
+    .inicio-button {
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      display: none;
+    }
+
+    .inicio-button:hover {
+      background-color: #3498db;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-container">
+    <h2>Registro</h2>
+    <form id="registroForm">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="text" id="apellido" placeholder="Apellido" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <select id="genero" required>
+        <option value="" disabled selected>Seleccione su género</option>
+        <option value="hombre">Hombre</option>
+        <option value="mujer">Mujer</option>
+      </select>
+      <button type="submit" class="submit-button">Registrarse</button>
+    </form>
+
+    <p>¿Ya tienes cuenta?</p>
+    <button class="login-button" onclick="location.href='login_registro.html'">Inicia sesión</button>
+
+    <!-- Mensaje de ya registrado -->
+    <p id="mensajeRegistrado">Ya estás registrado. ¡Disfruta de SUMMA!</p>
+
+    <!-- Botón Inicio -->
+    <button id="inicioBtn" class="inicio-button" onclick="location.href='pagina_principal.html'">Inicio</button>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFm09SWkmWGiaMbseFmeZEG8ZSd5ag8zY",
+      authDomain: "loginapp-60137.firebaseapp.com",
+      projectId: "loginapp-60137",
+      storageBucket: "loginapp-60137.appspot.com",
+      messagingSenderId: "275448553195",
+      appId: "1:275448553195:web:1a5a04be4852bc1f5da8ae",
+      measurementId: "G-B7R6ZQGQDE"
+    };
+
+    // Inicialización
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("registroForm");
+    const mensajeRegistrado = document.getElementById("mensajeRegistrado");
+    const inicioBtn = document.getElementById("inicioBtn");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const apellido = document.getElementById("apellido").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const genero = document.getElementById("genero").value;
+
+      try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const uid = userCredential.user.uid;
+
+        await setDoc(doc(db, "usuarios", uid), {
+          nombre,
+          apellido,
+          email,
+          genero,
+          creado: serverTimestamp()
+        });
+
+        // Redirigir directamente
+        window.location.href = "pagina_principal.html";
+
+      } catch (error) {
+        if (error.code === 'auth/email-already-in-use') {
+          // Mostrar mensaje de ya registrado y el botón
+          mensajeRegistrado.style.display = "block";
+          inicioBtn.style.display = "inline-block";
+        } else {
+          alert("Error: " + error.message);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
